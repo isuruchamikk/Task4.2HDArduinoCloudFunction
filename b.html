@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Remote LED Control</title>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script>
+        // Initialize Firebase with your config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAyt60AbD_1RjAG_SCsH482XAu2I8pGyfY",
+            authDomain: "arduinotrafficlight-54a3a.firebaseapp.com",
+            databaseURL: "https://arduinotrafficlight-54a3a-default-rtdb.firebaseio.com",
+            projectId: "arduinotrafficlight-54a3a",
+            storageBucket: "arduinotrafficlight-54a3a.firebasestorage.app",
+            messagingSenderId: "139383372367",
+            appId: "1:139383372367:web:7dd903a3e2e27f0b84c83a"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        
+        function toggleLED(color, state) {
+            database.ref('leds/' + color).set(state);
+        }
+    </script>
+    <style>
+        .led-control {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Remote Traffic Light Control</h1>
+    
+    <div class="led-control">
+        <h2>Red Light</h2>
+        <button onclick="toggleLED('red', 'on')">Turn ON</button>
+        <button onclick="toggleLED('red', 'off')">Turn OFF</button>
+    </div>
+    
+    <div class="led-control">
+        <h2>Green Light</h2>
+        <button onclick="toggleLED('green', 'on')">Turn ON</button>
+        <button onclick="toggleLED('green', 'off')">Turn OFF</button>
+    </div>
+    
+    <div class="led-control">
+        <h2>Blue Light</h2>
+        <button onclick="toggleLED('blue', 'on')">Turn ON</button>
+        <button onclick="toggleLED('blue', 'off')">Turn OFF</button>
+    </div>
+</body>
+</html>
